@@ -7,6 +7,23 @@ export default function formatNumber(number, option) {
   //
   // * Please implement the function and pass all the tests in format_number_spec.js.
   // * Please do NOT modify the signature of the function.
+  
+  var number = Math.round(parseFloat(number)*100)/100;  
+  var numArray = number.toString().split("."); 
+  if(numArray.length == 1){
+    number = number.toString()+".00";    
+  }
+  if(numArray.length>1 && numArray[1].length<2){
+    number = number.toString()+"0";
+  }
+  number = number.toString();
 
-  throw new Error('Please delete this line and implement the function');
+  if(option == undefined){
+    return number;
+  }
+  
+  if(true ==  option.currency ){
+    number = number.slice(0,0)+'$ '+number.slice(0);    
+  }  
+  return number;
 }
